@@ -1,4 +1,14 @@
 {
+  "name": "zhi-nuan-shi-guang-sys1",
+  "version": "0.0.1",
+  "description": "智暖食光 - 适老化健康点餐系统后端",
+  "scripts": {
+    "build": "nest build",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main"
+  },
   "dependencies": {
     "@nestjs/common": "^11.1.19",
     "@nestjs/config": "^4.0.4",
@@ -11,5 +21,16 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "typeorm": "^0.3.28"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.21",
+    "@nestjs/schematics": "^11.1.0",
+    "@nestjs/swagger": "^11.3.2",
+    "@nestjs/testing": "^11.1.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   }
 }
