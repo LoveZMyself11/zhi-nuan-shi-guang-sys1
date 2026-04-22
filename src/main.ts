@@ -27,7 +27,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('智暖食光 API')
     .setDescription('适老化健康点餐系统后端接口文档')
-    .setVersion('1.0')
+    .setVersion('2.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

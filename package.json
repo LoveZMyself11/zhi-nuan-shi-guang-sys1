@@ -1,6 +1,6 @@
 {
   "name": "zhi-nuan-shi-guang-sys1",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "智暖食光 - 适老化健康点餐系统后端",
   "scripts": {
     "build": "nest build",
