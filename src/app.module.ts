@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -13,18 +15,24 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'oracle',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
         username: configService.get<string>('DB_USER'),
         password: configService.get<string>('DB_PASSWORD'),
-        sid: configService.get<string>('DB_SID'),
-        // 如使用 SERVICE_NAME 可替换 sid 字段：
-        // serviceName: configService.get<string>('DB_SERVICE_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        connectString: (() => {
+          const host = configService.get<string>('DB_HOST');
+          const port = configService.get<number>('DB_PORT');
+          const sid = configService.get<string>('DB_SID');
+          const serviceName = configService.get<string>('DB_SERVICE_NAME');
+          if (serviceName) {
+            return `${host}:${port}/${serviceName}`;
+          }
+          return `${host}:${port}/${sid}`;
+        })(),
+        entities: [User],
         synchronize: false,
         logging: process.env.NODE_ENV === 'development',
       }),
     }),
+    UsersModule,
   ],
 })
 export class AppModule {}

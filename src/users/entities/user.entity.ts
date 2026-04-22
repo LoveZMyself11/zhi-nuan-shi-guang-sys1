@@ -26,7 +26,7 @@ export class User {
 
   @Column({
     name: 'ROLE',
-    type: 'varchar2',
+    type: 'varchar',
     length: 20,
     nullable: false,
     default: UserRole.ELDER,
